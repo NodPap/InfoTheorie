@@ -33,6 +33,19 @@ public class funktions {
 	public static double bsc_kanal_fehler(double p) {
 		return 1 + p * log2(p) + (1-p) * log2(1-p);
 	}
+	public static double probability_hamming(double N,double K) {
+		double p = 1.0;
+		double R = K/N;
+		while(p > 0){
+			if(bsc_kanal_fehler(p) < R) {
+				System.out.println("P "+p +"<"+ "R "+R);
+				return p;
+			}
+			//System.out.println(p);
+			p-=0.001;
+		}
+		return 99999;
+	}
 	
 	public static void writeFile_binomPlug(funktions f,int n, int k) throws IOException {
 		try {
@@ -63,7 +76,7 @@ public class funktions {
 			while (p>=0)
 			{
 				 writer.write(p+" "+bsc_kanal_fehler(p)+"\n");
-				p-=0.111;
+				p-=0.001;
 				writer.flush();
 			}
 			writer.close();
@@ -72,12 +85,15 @@ public class funktions {
 			e.printStackTrace();
 		}
 	}
+
+	
 	public static void main(String[] args) throws IOException {
 		funktions f = new funktions();
 		int n = 1000;
 		int k = 1000;
 		//f.writeFile_binomPlug(f,n,k);
-		writeFile_bscPlug(1.0);
+		//writeFile_bscPlug(1.0);
+		System.out.println(probability_hamming(7,4));
 	}
 }
 	
