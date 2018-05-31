@@ -3,6 +3,8 @@ package Praktikum1;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.Random;
+import java.util.Vector;
 
 public class funktions {
 
@@ -34,19 +36,37 @@ public class funktions {
 		return 1 + p * log2(p) + (1-p) * log2(1-p);
 	}
 	public static double probability_hamming(double N,double K) {
-		double p = 1.0;
+		double p = 0;
 		double R = K/N;
-		while(p > 0){
+		while(p < 1){
 			if(bsc_kanal_fehler(p) < R) {
-				System.out.println("P "+p +"<"+ "R "+R);
+				System.out.println("start from 0 -> 1 \n" +"C "+bsc_kanal_fehler(p) +"<"+ "R "+R);
 				return p;
 			}
 			//System.out.println(p);
-			p-=0.001;
+			p+=0.001;
 		}
+
 		return 99999;
 	}
 	
+	
+	public  Vector<Integer> channel_bsc(double p, int n){
+		Vector<Integer> fehlervektor = new Vector<Integer>(n);
+		int index=0;
+		Random generator = new Random();
+		for (int i = 0; i < n; i++) {
+			fehlervektor.add(i,0);
+		}
+	      long longValue = Math.round(p * n);
+	      int intValue = (int) longValue;
+		for (int i = 0; i < intValue; i++) {
+			index = generator.nextInt(10) + 0;
+			fehlervektor.add(index,1);
+		}
+		return fehlervektor;
+
+	}
 	public static void writeFile_binomPlug(funktions f,int n, int k) throws IOException {
 		try {
 
@@ -93,7 +113,11 @@ public class funktions {
 		int k = 1000;
 		//f.writeFile_binomPlug(f,n,k);
 		//writeFile_bscPlug(1.0);
-		System.out.println(probability_hamming(7,4));
+		//System.out.println(probability_hamming(7,4));
+		
+//////////////////////////////////////////////////////
+		System.out.println(f.channel_bsc(0.6,10));
+
 	}
 }
 	
