@@ -58,6 +58,7 @@ public class funktions {
 		for (int i = 0; i < n; i++) {
 			fehlervektor.add(i,0);
 		}
+		
 	      long longValue = Math.round(p * n);
 	      int intValue = (int) longValue;
 		for (int i = 0; i < intValue; i++) {
