@@ -61,7 +61,7 @@ public class funktions {
 	      long longValue = Math.round(p * n);
 	      int intValue = (int) longValue;
 		for (int i = 0; i < intValue; i++) {
-			index = generator.nextInt(10) + 0;
+			index = generator.nextInt(n) + 0;
 			fehlervektor.add(index,1);
 		}
 		return fehlervektor;
@@ -116,8 +116,7 @@ public class funktions {
 		//System.out.println(probability_hamming(7,4));
 		
 //////////////////////////////////////////////////////
-		System.out.println(f.channel_bsc(0.6,10));
-
+		System.out.println(f.channel_bsc(0.02,100));
 	}
 }
 	
