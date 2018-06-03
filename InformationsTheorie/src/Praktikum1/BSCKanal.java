@@ -40,6 +40,7 @@ public int[][] G_matrix =
 				HammingCode.add(S.get(0) * G_matrix[v][0]);
 			}
 		}
+		
 		System.out.println(S);
 	}
 	public void hamming_decoder() {
